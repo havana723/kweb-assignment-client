@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 const Background = styled.div`
   position: fixed;
@@ -29,12 +30,28 @@ const Menu = styled.div`
   justify-content: space-around;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
 const Header: React.FC = (props) => {
   return (
     <>
       <Background>
         <Logo>
-          <b>KU-LECTURE</b>
+          <StyledLink to="/">
+            <b>KU-LECTURE</b>
+          </StyledLink>
         </Logo>
         <Menu></Menu>
       </Background>

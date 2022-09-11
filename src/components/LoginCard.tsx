@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 import hello from "../img/hello.png";
 
 const Card = styled.div`
@@ -12,6 +13,7 @@ const Card = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 const ImgDiv = styled.div`
@@ -22,6 +24,14 @@ const ImgDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+const InputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 const InputForm = styled.form`
@@ -58,6 +68,18 @@ const Submit = styled(Input)`
   padding: 0;
 `;
 
+const Register = styled.div`
+  width: 90%;
+  text-align: right;
+  font-weight: 700;
+  color: #a57c7c;
+  white-space: nowrap;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 const LoginCard: React.FC = () => {
   return (
     <Card>
@@ -68,11 +90,23 @@ const LoginCard: React.FC = () => {
           alt="hello"
         />
       </ImgDiv>
-      <InputForm name="login">
-        <Input type="text" name="username" placeholder="USERNAME" />
-        <Input type="text" name="password" placeholder="PASSWORD" />
-        <Submit type="submit" value="로그인" />
-      </InputForm>
+      <InputContainer>
+        <InputForm name="login">
+          <Input type="text" name="username" placeholder="USERNAME" />
+          <Input type="password" name="password" placeholder="PASSWORD" />
+          <Submit type="submit" value="로그인" />
+        </InputForm>
+        <Link
+          to="/register/student"
+          style={{
+            textDecoration: "none",
+            alignSelf: "flex-end",
+            marginRight: "5%",
+          }}
+        >
+          <Register>가입하기 →</Register>
+        </Link>
+      </InputContainer>
     </Card>
   );
 };

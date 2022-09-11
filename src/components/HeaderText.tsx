@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 interface Props {
-  titleText?: string;
+  titleText: string;
   subTitleText?: string;
 }
 
@@ -28,21 +28,17 @@ const SubTitleText = styled.div`
   word-break: keep-all;
 `;
 
-const HeaderTextMain: React.FC<Props> = (props) => {
+const HeaderText: React.FC<Props> = (props) => {
   const { titleText, subTitleText } = props;
   return (
     <>
       <HeaderTextContainter>
-        <TitleText>Hello,</TitleText>
-        <TitleText>{titleText ?? "KU-LECTURE"}</TitleText>
+        <TitleText>{titleText}</TitleText>
         <div style={{ height: "2vh" }} />
-        <SubTitleText>
-          {subTitleText ??
-            "KU-LECTURE는 고려대학교 학생들과 교수자들을 위한 강의 관리 시스템입니다."}
-        </SubTitleText>
+        {subTitleText ? <SubTitleText>{subTitleText}</SubTitleText> : null}
       </HeaderTextContainter>
     </>
   );
 };
 
-export default HeaderTextMain;
+export default HeaderText;
