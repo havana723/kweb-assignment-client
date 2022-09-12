@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
+import axios from "axios";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 import hello from "../img/hello.png";
+import { ErrorResponse } from "../types/Error";
 
 const Card = styled.div`
   width: 800px;
@@ -81,6 +85,29 @@ const Register = styled.div`
 `;
 
 const LoginCard: React.FC = () => {
+  const authContext = useContext(AuthContext);
+
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    axios
+      .post("auth/login", {
+        username,
+        password,
+      })
+      .then((res) => {
+        alert("로그인에 성공하였습니다!");
+        authContext.refetchProfile();
+      })
+      .catch((err) => {
+        if (axios.isAxiosError(err)) {
+          alert((err.response?.data as ErrorResponse).error);
+        }
+      });
+  };
+
   return (
     <Card>
       <ImgDiv>
@@ -91,9 +118,27 @@ const LoginCard: React.FC = () => {
         />
       </ImgDiv>
       <InputContainer>
-        <InputForm name="login">
-          <Input type="text" name="username" placeholder="USERNAME" />
-          <Input type="password" name="password" placeholder="PASSWORD" />
+        <InputForm onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            name="username"
+            placeholder="USERNAME"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            pattern="^[a-z0-9]{4,32}$"
+            title="아이디는 숫자 또는 영문자로 이루어진 8글자에서 32글자 사이의 조합이어야 합니다."
+          />
+          <Input
+            type="password"
+            name="password"
+            placeholder="PASSWORD"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            pattern="^([a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,32}$"
+            title="비밀번호는 숫자+영문자+특수문자로 이루어진 8글자에서 32글자 사이의 조합이어야 합니다."
+          />
           <Submit type="submit" value="로그인" />
         </InputForm>
         <Link

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ErrorResponse } from "../types/Error";
 
 interface Props {
@@ -77,6 +77,7 @@ const ChangeRole = styled.div`
 `;
 
 const RegisterCard: React.FC<Props> = (props) => {
+  const navigate = useNavigate();
   const role = props.role;
 
   const [username, setUsername] = useState<string>("");
@@ -96,6 +97,7 @@ const RegisterCard: React.FC<Props> = (props) => {
       })
       .then((res) => {
         alert("회원 가입에 성공하였습니다!");
+        navigate("/");
       })
       .catch((err) => {
         if (axios.isAxiosError(err)) {
