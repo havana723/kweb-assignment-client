@@ -9,6 +9,7 @@ import {
 import "./App.css";
 import { AuthContext } from "./contexts/AuthContext";
 import Home from "./pages/Home";
+import Logout from "./pages/Logout";
 import RegisterProfessor from "./pages/register/RegisterProfessor";
 import RegisterStudent from "./pages/register/RegisterStudent";
 import UserResponse from "./types/UserResponse";
@@ -25,7 +26,7 @@ function App() {
       .then((res) => {
         setUser(res.data);
       })
-      .catch();
+      .catch((res) => setUser(null));
   };
   const logout = () => {
     window.location.href = "/logout";
@@ -49,6 +50,7 @@ function App() {
             <Route path="professor" element={<RegisterProfessor />} />
             <Route index element={<Navigate to="/register/student" />} />
           </Route>
+          <Route path="logout" element={<Logout />} />
         </Routes>
       </AuthContext.Provider>
     </Router>

@@ -61,7 +61,7 @@ const MenuDrawerConatiner = styled.div`
   height: 100%;
   right: -100%;
   top: 0;
-  transition: transform 0.2s ease;
+  transition: transform 0.4s ease;
 `;
 
 const MenuDrawerBackground = styled.div`
@@ -94,7 +94,7 @@ const Header: React.FC = (props) => {
   const authContext = useContext(AuthContext);
   const user = authContext.currentUser;
 
-  const [windowX, windowY] = useWindowSize();
+  const [windowX] = useWindowSize();
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
