@@ -11,6 +11,7 @@ const HeaderTextContainter = styled.div`
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  user-select: none;
 `;
 
 const TitleText = styled.div`

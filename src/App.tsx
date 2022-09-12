@@ -1,6 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
 import { AuthContext } from "./contexts/AuthContext";
 import Home from "./pages/Home";
@@ -18,7 +23,7 @@ function App() {
     axios
       .get("/auth/verify")
       .then((res) => {
-        setUser(res.data.user);
+        setUser(res.data);
       })
       .catch();
   };
@@ -42,6 +47,7 @@ function App() {
           <Route path="register">
             <Route path="student" element={<RegisterStudent />} />
             <Route path="professor" element={<RegisterProfessor />} />
+            <Route index element={<Navigate to="/register/student" />} />
           </Route>
         </Routes>
       </AuthContext.Provider>
