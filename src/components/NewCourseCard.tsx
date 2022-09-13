@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ErrorResponse } from "../types/Error";
 
 const Card = styled.div`
@@ -63,15 +64,18 @@ const NewCourseCard: React.FC = () => {
   const [courseName, setCourseName] = useState<string>("");
   const [courseId, setCourseId] = useState<string>("");
 
+  const navigate = useNavigate();
+
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     axios
-      .post("course/post", {
+      .post<{ courseId: string }>("course/post", {
         courseName,
         courseId,
       })
       .then((res) => {
         alert("강의 개설에 성공하였습니다!");
+        navigate(`/course/${res.data.courseId}`);
       })
       .catch((err) => {
         if (axios.isAxiosError(err)) {

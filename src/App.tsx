@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import { AuthContext } from "./contexts/AuthContext";
+import CourseDetail from "./pages/course/CourseDetail";
 import CourseNew from "./pages/course/CourseNew";
 import Home from "./pages/Home";
 import Logout from "./pages/Logout";
@@ -48,6 +49,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="course">
             <Route path="new" element={<CourseNew />} />
+            <Route path=":courseId" element={<CourseDetail />} />
           </Route>
           <Route path="logout" element={<Logout />} />
           <Route path="register">
