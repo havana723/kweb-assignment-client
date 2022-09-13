@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import { AuthContext } from "./contexts/AuthContext";
+import CourseNew from "./pages/course/CourseNew";
 import Home from "./pages/Home";
 import Logout from "./pages/Logout";
 import RegisterProfessor from "./pages/register/RegisterProfessor";
@@ -45,12 +46,15 @@ function App() {
       <AuthContext.Provider value={authContextValue}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="course">
+            <Route path="new" element={<CourseNew />} />
+          </Route>
+          <Route path="logout" element={<Logout />} />
           <Route path="register">
             <Route path="student" element={<RegisterStudent />} />
             <Route path="professor" element={<RegisterProfessor />} />
             <Route index element={<Navigate to="/register/student" />} />
           </Route>
-          <Route path="logout" element={<Logout />} />
         </Routes>
       </AuthContext.Provider>
     </Router>

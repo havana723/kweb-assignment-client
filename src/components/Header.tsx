@@ -109,15 +109,21 @@ const Header: React.FC = (props) => {
             {user ? (
               windowX >= 720 ? (
                 <>
-                  <StyledLink to="/courses">
-                    <b>강의목록</b>
-                  </StyledLink>
+                  {user.role === "STUDENT" ? (
+                    <StyledLink to="/course/list">
+                      <b>강의 목록</b>
+                    </StyledLink>
+                  ) : null}
                   {user.role === "STUDENT" ? (
                     <StyledLink to="/recents">
                       <b>최근 활동</b>
                     </StyledLink>
-                  ) : null}
-                  <StyledLink to="/courses/my">
+                  ) : (
+                    <StyledLink to="/course/new">
+                      <b>강의 등록</b>
+                    </StyledLink>
+                  )}
+                  <StyledLink to="/course/my">
                     <b>내 강의</b>
                   </StyledLink>
                 </>
@@ -144,20 +150,26 @@ const Header: React.FC = (props) => {
           style={{ transform: isMenuOpen ? "translateX(-100%)" : undefined }}
         >
           <MenuDrawerBackground>
-            <MenuDrawerContent>
-              <StyledLink to="/courses">
-                <b>강의목록</b>
-              </StyledLink>
-            </MenuDrawerContent>
+            {user.role === "STUDENT" ? (
+              <MenuDrawerContent>
+                <StyledLink to="/course/list">
+                  <b>강의 목록</b>
+                </StyledLink>
+              </MenuDrawerContent>
+            ) : null}
             <MenuDrawerContent>
               {user.role === "STUDENT" ? (
                 <StyledLink to="/recents">
                   <b>최근 활동</b>
                 </StyledLink>
-              ) : null}
+              ) : (
+                <StyledLink to="/course/new">
+                  <b>강의 등록</b>
+                </StyledLink>
+              )}
             </MenuDrawerContent>
             <MenuDrawerContent>
-              <StyledLink to="/courses/my">
+              <StyledLink to="/course/my">
                 <b>내 강의</b>
               </StyledLink>
             </MenuDrawerContent>
