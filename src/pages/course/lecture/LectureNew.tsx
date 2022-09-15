@@ -13,7 +13,7 @@ const CourseNew: React.FC = () => {
         {courseId ? (
           <>
             <HeaderText titleText={courseId} subTitleText="강의 게시물 작성" />
-            <NewLectureCard />
+            <NewLectureCard courseId={courseId} />
           </>
         ) : null}
       </Page>

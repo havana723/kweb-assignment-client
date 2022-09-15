@@ -11,6 +11,7 @@ import { AuthContext } from "./contexts/AuthContext";
 import CourseDetail from "./pages/course/CourseDetail";
 import CourseMy from "./pages/course/courseMy";
 import CourseNew from "./pages/course/CourseNew";
+import LectureDetail from "./pages/course/lecture/LectureDetail";
 import LectureNew from "./pages/course/lecture/LectureNew";
 import Home from "./pages/Home";
 import Logout from "./pages/Logout";
@@ -55,7 +56,7 @@ function App() {
             <Route path=":courseId">
               <Route index element={<CourseDetail />} />
               <Route path="new" element={<LectureNew />} />
-              <Route path=":lectureId" />
+              <Route path=":lectureId" element={<LectureDetail />} />
             </Route>
           </Route>
           <Route path="logout" element={<Logout />} />
