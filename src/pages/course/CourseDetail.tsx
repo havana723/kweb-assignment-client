@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AddButton from "../../components/AddButton";
 import HeaderText from "../../components/HeaderText";
+import LectureList from "../../components/LectureList";
 import Page from "../../components/Page";
 import CourseResponse from "../../types/CourseResponse";
 import { ErrorResponse } from "../../types/Error";
@@ -39,7 +40,21 @@ const CourseDetail: React.FC = (props) => {
               titleText={course.courseName}
               subTitleText={course.professorName}
             />
-            <AddButton handleClick={() => navigate("new")} />
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "2vh" }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "flex-end",
+                  paddingRight: "2vh",
+                }}
+              >
+                <AddButton handleClick={() => navigate("new")} />
+              </div>
+              <LectureList lectures={course.lectures} />
+            </div>
           </>
         ) : null}
       </Page>

@@ -51,6 +51,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="course">
+            <Route path="list" />
             <Route path="my" element={<CourseMy />} />
             <Route path="new" element={<CourseNew />} />
             <Route path=":courseId">

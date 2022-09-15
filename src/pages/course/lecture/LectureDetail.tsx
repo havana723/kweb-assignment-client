@@ -38,6 +38,7 @@ const LectureDetail: React.FC = (props) => {
             <HeaderText
               titleText={lecture.lectureTitle}
               subTitleText={lecture.courseName ?? lecture.courseId}
+              subTitleOnClick={() => navigate(`/course/${lecture.courseId}`)}
             />
             <LectureDisplay lectureContent={lecture.lectureContent} />
           </>

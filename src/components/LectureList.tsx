@@ -74,22 +74,39 @@ const LectureList: React.FC<Props> = (props) => {
   return (
     <>
       <CardContainer>
-        {lectures.map((l) => (
-          <Card
-            key={l.courseId}
-            onClick={() => navigate(`/course/${l.courseId}/lecture/${l.id}`)}
-          >
-            <TitleContainer>
-              <TitleText>{`${l.lectureTitle}`}</TitleText>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <MdArrowForward fontSize="16pt" />
-              </div>
-            </TitleContainer>
-            <SubTitleContainer>
-              <SubTitleText>{l.lectureContent}</SubTitleText>
-            </SubTitleContainer>
-          </Card>
-        ))}
+        {lectures.length > 0 ? (
+          lectures.map((l) => (
+            <Card
+              key={l.courseId}
+              onClick={() => navigate(`/course/${l.courseId}/${l.id}`)}
+            >
+              <TitleContainer>
+                <TitleText>{`${l.lectureTitle}`}</TitleText>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <MdArrowForward fontSize="16pt" />
+                </div>
+              </TitleContainer>
+              <SubTitleContainer>
+                <SubTitleText>{l.lectureContent}</SubTitleText>
+              </SubTitleContainer>
+            </Card>
+          ))
+        ) : (
+          <>
+            <div style={{ height: "4vh" }} />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                color: "gray",
+                fontWeight: "500",
+                fontSize: "16px",
+              }}
+            >
+              강의 게시물이 존재하지 않습니다.
+            </div>
+          </>
+        )}
       </CardContainer>
     </>
   );

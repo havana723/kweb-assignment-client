@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 interface Props {
   titleText: string;
   subTitleText?: string;
+  subTitleOnClick?: () => void;
 }
 
 const HeaderTextContainter = styled.div`
@@ -30,13 +31,15 @@ const SubTitleText = styled.div`
 `;
 
 const HeaderText: React.FC<Props> = (props) => {
-  const { titleText, subTitleText } = props;
+  const { titleText, subTitleText, subTitleOnClick } = props;
   return (
     <>
       <HeaderTextContainter>
         <TitleText>{titleText}</TitleText>
         <div style={{ height: "2vh" }} />
-        {subTitleText ? <SubTitleText>{subTitleText}</SubTitleText> : null}
+        {subTitleText ? (
+          <SubTitleText onClick={subTitleOnClick}>{subTitleText}</SubTitleText>
+        ) : null}
       </HeaderTextContainter>
     </>
   );
