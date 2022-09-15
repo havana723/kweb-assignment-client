@@ -41,10 +41,13 @@ const TitleContainer = styled.div`
 `;
 
 const TitleText = styled.div`
-  font-size: min(1.5rem, 6vw);
+  width: 360px;
+  max-width: 70vw;
+  font-size: 20px;
   font-weight: 700;
-  display: flex;
-  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const SubTitleContainer = styled.div`
@@ -56,7 +59,7 @@ const SubTitleContainer = styled.div`
 `;
 
 const SubTitleText = styled.div`
-  font-size: min(1.3rem, 5vw);
+  font-size: 16px;
   font-weight: 700;
   color: #a57c7c;
   display: flex;
@@ -77,9 +80,9 @@ const CourseList: React.FC<Props> = (props) => {
           >
             <TitleContainer>
               <TitleText>{`[${c.courseId}] ${c.courseName}`}</TitleText>
-              <TitleText>
+              <div style={{ display: "flex", alignItems: "center" }}>
                 <MdArrowForward fontSize="16pt" />
-              </TitleText>
+              </div>
             </TitleContainer>
             <SubTitleContainer>
               <SubTitleText>{c.professorName}</SubTitleText>
