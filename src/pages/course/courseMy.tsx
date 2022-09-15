@@ -7,7 +7,7 @@ import Page from "../../components/Page";
 import CourseResponse from "../../types/CourseResponse";
 import { ErrorResponse } from "../../types/Error";
 
-const CourseDetail: React.FC = (props) => {
+const CourseMy: React.FC = (props) => {
   const [courses, setCourses] = useState<CourseResponse[] | null>(null);
 
   const navigate = useNavigate();
@@ -36,4 +36,4 @@ const CourseDetail: React.FC = (props) => {
   );
 };
 
-export default CourseDetail;
+export default CourseMy;

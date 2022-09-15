@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import AddButton from "../../components/AddButton";
 import HeaderText from "../../components/HeaderText";
 import Page from "../../components/Page";
 import CourseResponse from "../../types/CourseResponse";
@@ -33,10 +34,13 @@ const CourseDetail: React.FC = (props) => {
     <>
       <Page>
         {course ? (
-          <HeaderText
-            titleText={course.courseName}
-            subTitleText={course.professorName}
-          />
+          <>
+            <HeaderText
+              titleText={course.courseName}
+              subTitleText={course.professorName}
+            />
+            <AddButton handleClick={() => navigate("new")} />
+          </>
         ) : null}
       </Page>
     </>
