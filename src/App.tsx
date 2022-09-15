@@ -9,6 +9,7 @@ import {
 import "./App.css";
 import { AuthContext } from "./contexts/AuthContext";
 import CourseDetail from "./pages/course/CourseDetail";
+import CourseMy from "./pages/course/courseMy";
 import CourseNew from "./pages/course/CourseNew";
 import Home from "./pages/Home";
 import Logout from "./pages/Logout";
@@ -48,6 +49,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="course">
+            <Route path="my" element={<CourseMy />} />
             <Route path="new" element={<CourseNew />} />
             <Route path=":courseId" element={<CourseDetail />} />
           </Route>

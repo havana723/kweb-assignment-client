@@ -69,7 +69,7 @@ const NewCourseCard: React.FC = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     axios
-      .post<{ courseId: string }>("course/post", {
+      .post<{ courseId: string }>("course", {
         courseName,
         courseId,
       })

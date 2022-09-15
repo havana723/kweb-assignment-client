@@ -1,25 +1,22 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import CourseList from "../../components/CourseList";
 import HeaderText from "../../components/HeaderText";
 import Page from "../../components/Page";
 import CourseResponse from "../../types/CourseResponse";
 import { ErrorResponse } from "../../types/Error";
 
 const CourseDetail: React.FC = (props) => {
-  const params = useParams();
-
-  const [course, setCourse] = useState<CourseResponse | null>(null);
+  const [courses, setCourses] = useState<CourseResponse[] | null>(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get<CourseResponse>("course", {
-        params,
-      })
+      .get<CourseResponse[]>("course/list/my")
       .then((res) => {
-        setCourse(res.data);
+        setCourses(res.data);
       })
       .catch((err) => {
         if (axios.isAxiosError(err)) {
@@ -27,17 +24,13 @@ const CourseDetail: React.FC = (props) => {
           navigate("/", { replace: true });
         }
       });
-  }, [navigate, params]);
+  }, [navigate]);
 
   return (
     <>
       <Page>
-        {course ? (
-          <HeaderText
-            titleText={course.courseName}
-            subTitleText={course.professorName}
-          />
-        ) : null}
+        <HeaderText titleText="내 강의" />
+        <CourseList courses={courses ?? []} />
       </Page>
     </>
   );
