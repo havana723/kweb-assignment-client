@@ -9,8 +9,10 @@ import {
 import "./App.css";
 import { AuthContext } from "./contexts/AuthContext";
 import CourseDetail from "./pages/course/CourseDetail";
+import CourseListPage from "./pages/course/CourseList";
 import CourseMy from "./pages/course/courseMy";
 import CourseNew from "./pages/course/CourseNew";
+import CourseRegister from "./pages/course/CourseRegister";
 import LectureDetail from "./pages/course/lecture/LectureDetail";
 import LectureNew from "./pages/course/lecture/LectureNew";
 import Home from "./pages/Home";
@@ -51,12 +53,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="course">
-            <Route path="list" />
+            <Route path="list" element={<CourseListPage />} />
             <Route path="my" element={<CourseMy />} />
             <Route path="new" element={<CourseNew />} />
             <Route path=":courseId">
               <Route index element={<CourseDetail />} />
               <Route path="new" element={<LectureNew />} />
+              <Route path="register" element={<CourseRegister />} />
               <Route path=":lectureId" element={<LectureDetail />} />
             </Route>
           </Route>

@@ -1,14 +1,18 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AddButton from "../../components/AddButton";
 import HeaderText from "../../components/HeaderText";
 import LectureList from "../../components/LectureList";
 import Page from "../../components/Page";
+import { AuthContext } from "../../contexts/AuthContext";
 import CourseResponse from "../../types/CourseResponse";
 import { ErrorResponse } from "../../types/Error";
 
 const CourseDetail: React.FC = (props) => {
+  const authContext = useContext(AuthContext);
+  const user = authContext.currentUser;
+
   const params = useParams();
 
   const [course, setCourse] = useState<CourseResponse | null>(null);
@@ -51,7 +55,9 @@ const CourseDetail: React.FC = (props) => {
                   paddingRight: "2vh",
                 }}
               >
-                <AddButton handleClick={() => navigate("new")} />
+                {authContext.currentUser?.role === "PROFESSOR" ? (
+                  <AddButton handleClick={() => navigate("new")} />
+                ) : undefined}
               </div>
               <LectureList lectures={course.lectures} />
             </div>

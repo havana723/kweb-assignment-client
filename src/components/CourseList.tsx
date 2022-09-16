@@ -2,9 +2,11 @@ import styled from "@emotion/styled";
 import { MdArrowForward } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import CourseResponse from "../types/CourseResponse";
+import AddButton from "./AddButton";
 
 interface Props {
   courses: CourseResponse[];
+  isFullList?: boolean;
 }
 
 const CardContainer = styled.div`
@@ -77,13 +79,25 @@ const CourseList: React.FC<Props> = (props) => {
           courses.map((c) => (
             <Card
               key={c.courseId}
-              onClick={() => navigate(`/course/${c.courseId}`)}
+              onClick={
+                !props.isFullList
+                  ? () => navigate(`/course/${c.courseId}`)
+                  : undefined
+              }
             >
               <TitleContainer>
                 <TitleText>{`[${c.courseId}] ${c.courseName}`}</TitleText>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                  <MdArrowForward fontSize="16pt" />
-                </div>
+                {props.isFullList ? (
+                  <AddButton
+                    handleClick={() =>
+                      navigate(`/course/${c.courseId}/register`)
+                    }
+                  />
+                ) : (
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <MdArrowForward fontSize="16pt" />
+                  </div>
+                )}
               </TitleContainer>
               <SubTitleContainer>
                 <SubTitleText>{c.professorName}</SubTitleText>
