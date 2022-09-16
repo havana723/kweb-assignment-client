@@ -87,7 +87,7 @@ const LectureList: React.FC<Props> = (props) => {
                 </div>
               </TitleContainer>
               <SubTitleContainer>
-                <SubTitleText>{l.lectureContent}</SubTitleText>
+                <SubTitleText>{l.courseId}</SubTitleText>
               </SubTitleContainer>
             </Card>
           ))

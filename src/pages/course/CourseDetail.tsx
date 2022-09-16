@@ -55,7 +55,7 @@ const CourseDetail: React.FC = (props) => {
                   paddingRight: "2vh",
                 }}
               >
-                {authContext.currentUser?.role === "PROFESSOR" ? (
+                {user?.role === "PROFESSOR" ? (
                   <AddButton handleClick={() => navigate("new")} />
                 ) : undefined}
               </div>

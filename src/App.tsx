@@ -17,6 +17,7 @@ import LectureDetail from "./pages/course/lecture/LectureDetail";
 import LectureNew from "./pages/course/lecture/LectureNew";
 import Home from "./pages/Home";
 import Logout from "./pages/Logout";
+import Recents from "./pages/Recents";
 import RegisterProfessor from "./pages/register/RegisterProfessor";
 import RegisterStudent from "./pages/register/RegisterStudent";
 import UserResponse from "./types/UserResponse";
@@ -64,6 +65,7 @@ function App() {
             </Route>
           </Route>
           <Route path="logout" element={<Logout />} />
+          <Route path="recents" element={<Recents />} />
           <Route path="register">
             <Route path="student" element={<RegisterStudent />} />
             <Route path="professor" element={<RegisterProfessor />} />
