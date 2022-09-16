@@ -22,6 +22,7 @@ const CourseRegister: React.FC = () => {
       .catch((err) => {
         if (axios.isAxiosError(err)) {
           alert((err.response?.data as ErrorResponse).error);
+          navigate(-1);
         }
       });
   }, [authContext, navigate, params.courseId]);
