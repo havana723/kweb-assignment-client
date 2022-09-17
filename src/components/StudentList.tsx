@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
-import { MdArrowForward, MdOutlineAdd } from "react-icons/md";
+import { MdPersonRemove } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import CourseResponse from "../types/CourseResponse";
+import UserResponse from "../types/UserResponse";
 import CircleButton from "./CircleButton";
 
 interface Props {
-  courses: CourseResponse[];
-  isFullList?: boolean;
+  students: UserResponse[];
 }
 
 const CardContainer = styled.div`
@@ -64,44 +63,30 @@ const SubTitleText = styled.div`
   font-size: 16px;
   font-weight: 700;
   color: #a57c7c;
-  display: flex;
-  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
-const CourseList: React.FC<Props> = (props) => {
-  const courses = props.courses;
+const LectureList: React.FC<Props> = (props) => {
+  const { students } = props;
   const navigate = useNavigate();
 
   return (
     <>
       <CardContainer>
-        {courses.length > 0 ? (
-          courses.map((c) => (
-            <Card
-              key={c.courseId}
-              onClick={
-                !props.isFullList
-                  ? () => navigate(`/course/${c.courseId}`)
-                  : undefined
-              }
-            >
+        {students.length > 0 ? (
+          students.map((s) => (
+            <Card key={s.uniqueId}>
               <TitleContainer>
-                <TitleText>{`[${c.courseId}] ${c.courseName}`}</TitleText>
-                {props.isFullList ? (
-                  <CircleButton
-                    handleClick={() =>
-                      navigate(`/course/${c.courseId}/register`)
-                    }
-                    icon={<MdOutlineAdd fontSize="16pt" />}
-                  />
-                ) : (
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    <MdArrowForward fontSize="16pt" />
-                  </div>
-                )}
+                <TitleText>{s.name}</TitleText>
+                <CircleButton
+                  handleClick={() => {}}
+                  icon={<MdPersonRemove fontSize="16pt" />}
+                />
               </TitleContainer>
               <SubTitleContainer>
-                <SubTitleText>{c.professorName}</SubTitleText>
+                <SubTitleText>{s.uniqueId}</SubTitleText>
               </SubTitleContainer>
             </Card>
           ))
@@ -117,7 +102,7 @@ const CourseList: React.FC<Props> = (props) => {
                 fontSize: "16px",
               }}
             >
-              강의가 존재하지 않습니다.
+              수강 학생이 존재하지 않습니다.
             </div>
           </>
         )}
@@ -126,4 +111,4 @@ const CourseList: React.FC<Props> = (props) => {
   );
 };
 
-export default CourseList;
+export default LectureList;

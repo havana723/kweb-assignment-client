@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { MdOutlineAdd } from "react-icons/md";
 
 interface Props {
   handleClick: () => void;
+  icon: React.ReactNode;
 }
 
 const CircleButton = styled.button`
@@ -22,12 +22,8 @@ const CircleButton = styled.button`
 `;
 
 const AddButton: React.FC<Props> = (props) => {
-  const handleClick = props.handleClick;
-  return (
-    <CircleButton onClick={handleClick}>
-      <MdOutlineAdd fontSize="16pt" />
-    </CircleButton>
-  );
+  const { handleClick, icon } = props;
+  return <CircleButton onClick={handleClick}>{icon}</CircleButton>;
 };
 
 export default AddButton;

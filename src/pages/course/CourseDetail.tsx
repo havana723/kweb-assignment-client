@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import { MdOutlineAdd, MdPerson } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
-import AddButton from "../../components/AddButton";
+import CircleButton from "../../components/CircleButton";
 import HeaderText from "../../components/HeaderText";
 import LectureList from "../../components/LectureList";
 import Page from "../../components/Page";
@@ -53,10 +54,20 @@ const CourseDetail: React.FC = (props) => {
                   alignItems: "center",
                   justifyContent: "flex-end",
                   paddingRight: "2vh",
+                  gap: "8px",
                 }}
               >
                 {user?.role === "PROFESSOR" ? (
-                  <AddButton handleClick={() => navigate("new")} />
+                  <>
+                    <CircleButton
+                      handleClick={() => navigate("student")}
+                      icon={<MdPerson fontSize="16pt" />}
+                    />
+                    <CircleButton
+                      handleClick={() => navigate("new")}
+                      icon={<MdOutlineAdd fontSize="16pt" />}
+                    />
+                  </>
                 ) : undefined}
               </div>
               <LectureList lectures={course.lectures} />

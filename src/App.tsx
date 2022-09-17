@@ -15,6 +15,7 @@ import CourseNew from "./pages/course/CourseNew";
 import CourseRegister from "./pages/course/CourseRegister";
 import LectureDetail from "./pages/course/lecture/LectureDetail";
 import LectureNew from "./pages/course/lecture/LectureNew";
+import CourseStudent from "./pages/course/student/CourseStudent";
 import Home from "./pages/Home";
 import Logout from "./pages/Logout";
 import Recents from "./pages/Recents";
@@ -61,6 +62,7 @@ function App() {
               <Route index element={<CourseDetail />} />
               <Route path="new" element={<LectureNew />} />
               <Route path="register" element={<CourseRegister />} />
+              <Route path="student" element={<CourseStudent />} />
               <Route path=":lectureId" element={<LectureDetail />} />
             </Route>
           </Route>
