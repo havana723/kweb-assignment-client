@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
+import axios from "axios";
 import { MdPersonRemove } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { ErrorResponse } from "../types/Error";
 import UserResponse from "../types/UserResponse";
 import CircleButton from "./CircleButton";
 
@@ -69,8 +71,26 @@ const SubTitleText = styled.div`
 `;
 
 const LectureList: React.FC<Props> = (props) => {
-  const { students } = props;
+  const params = useParams();
   const navigate = useNavigate();
+
+  const { students } = props;
+
+  const handleClick = (studentId: string) => {
+    axios
+      .delete("/course/student", {
+        data: { courseId: params.courseId ?? "", studentId },
+      })
+      .then((res) => {
+        alert(`${studentId} 학생을 수강취소 했습니다.`);
+        navigate(0);
+      })
+      .catch((err) => {
+        if (axios.isAxiosError(err)) {
+          alert((err.response?.data as ErrorResponse).error);
+        }
+      });
+  };
 
   return (
     <>
@@ -81,7 +101,7 @@ const LectureList: React.FC<Props> = (props) => {
               <TitleContainer>
                 <TitleText>{s.name}</TitleText>
                 <CircleButton
-                  handleClick={() => {}}
+                  handleClick={() => handleClick(s.uniqueId)}
                   icon={<MdPersonRemove fontSize="16pt" />}
                 />
               </TitleContainer>
